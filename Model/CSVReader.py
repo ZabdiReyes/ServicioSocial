@@ -1,11 +1,15 @@
 import csv
 
 class CSVReader:
+    directory_path = None
     file_path = None
     rows = None
-    def __init__(self, file_path):
-        self.file_path = file_path
+    def __init__(self, directory_path):
+        self.file_path = directory_path
         self.rows = self.count_rows()
+    
+    def read(self, file_path):
+        self.file_path = self.file_path + file_path
 
     #assumed to be the last column or the second to last column
     def _get_at_invitations(self,row):
@@ -56,4 +60,4 @@ class CSVReader:
     def count_rows(self):
         with open(self.file_path, mode='r', newline='', encoding='utf-8') as file:
             reader = csv.reader(file)
-            return sum(1 for row in reader) - 1  # Subtract 1 for the header row
+            return sum(1 for row in reader) - 1  # Subtract 1 for the header row        

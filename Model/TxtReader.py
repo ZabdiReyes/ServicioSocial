@@ -1,14 +1,17 @@
 class TxtReader:
-    def __init__(self, file_path):
-        self.file_path = file_path
-        self.content = ""
+    directory_path = None
+    file_path = None
+    
+    def __init__(self, directory_path):
+        self.directory_path = directory_path
 
-    def read(self):
+    def read(self, file_path):
+        file_path = self.directory_path + file_path
         try:
-            with open(self.file_path, 'r') as file:
+            with open(file_path, 'r') as file:
                 self.content = file.read()
         except FileNotFoundError:
-            print(f"The file {self.file_path} does not exist.")
+            print(f"The file {super.file} does not exist.")
         except Exception as e:
             print(f"An error occurred: {e}")
 
